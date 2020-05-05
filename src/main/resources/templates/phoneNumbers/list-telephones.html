@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Renter Directory</title>
+</head>
+
+<body>
+<div th:class="container" style="padding-top: 50px;">
+    <p class="h4 mb-4">Telephones for <span th:text="${renter.firstName} + ' ' + ${renter.lastName}"></span>:</p>
+    <hr>
+
+    <!-- Add button -->
+    <a th:href="@{/renters/telephones/add/{id}(id=${renter.renterId})}" class="btn btn-primary btn-sm mb-3">Add Telephone</a>
+
+    <table class="table table-hover">
+
+        <thead>
+        <tr>
+            <th role="columnheader">Telephone</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="phoneNumber : ${phoneNumbers}">
+            <td th:text="${phoneNumber.phone}"></td>
+            <td>
+                <!-- Add update function -->
+                <a th:href="@{/renters/telephones/update/{renterId}/{phoneId}(renterId=${renter.renterId}, phoneId=${phoneNumber.phoneId})}" class="btn btn-info btn-sm">Update</a>
+                <!-- Add "delete" button/link -->
+                <a th:href="@{/renters/telephones/delete/{renterId}/{phoneId}(renterId=${renter.renterId}, phoneId=${phoneNumber.phoneId})}" class="btn btn-danger btn-sm"
+                   onclick="if (!(confirm('Are you sure you want to delete this renter?'))) return false">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+
+    <hr>
+    <a th:href="@{/renters/list}">Back to Renter List</a>
+
+</div>
+</body>
+</html>

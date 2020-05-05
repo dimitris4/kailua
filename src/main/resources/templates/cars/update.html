@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Update Car</title>
+
+</head>
+
+<body>
+<div th:class="container" style="padding-top: 50px;">
+    <p class="h4 mb-4">Update car</p>
+
+    <form action="#"
+          th:action="@{/cars/update/{id}(id=${car.carId})}"
+          th:object="${car}"
+          method="post">
+
+        <!-- Add hidden form field to handle the update -->
+        <input type="hidden" th:field="*{carId}" />
+
+        <div class="form-group">
+            <label for="registrationNumber">Registration Number:</label>
+            <input type="text" class="form-control" placeholder="Enter registration number" id="registrationNumber" th:field="*{registrationNumber}">
+            <td class="error-list" th:if="${#fields.hasErrors('registrationNumber')}" th:errors="*{registrationNumber}">Mandatory Field!</td>
+        </div>
+
+        <div class="form-group">
+            <label for="firstRegistration">First Registration:</label>
+            <input type="date" class="form-control" placeholder="Enter first registration" id="firstRegistration" th:field="*{firstRegistration}">
+            <td class="error-list" th:if="${#fields.hasErrors('firstRegistration')}" th:errors="*{firstRegistration}">Mandatory Field!</td>
+        </div>
+
+        <div class="form-group">
+            <label for="odometer">Odometer:</label>
+            <input type="number" class="form-control" placeholder="Enter odometer" id="odometer" th:field="*{odometer}">
+        </div>
+
+        <div class="form-group">
+            <label for="brand">Brand:</label>
+            <input type="text" class="form-control" placeholder="Enter brand" id="brand" th:field="*{brand}">
+            <td class="error-list" th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}">Mandatory Field!</td>
+        </div>
+
+        <div class="form-group">
+            <label for="model">Model:</label>
+            <input type="text" class="form-control" placeholder="Enter model" id="model" th:field="*{model}">
+            <td class="error-list" th:if="${#fields.hasErrors('model')}" th:errors="*{model}">Mandatory Field!</td>
+        </div>
+
+        <div class="form-group">
+            <label for="fuelType">Fuel Type:</label>
+            <select class="form-control" th:field="*{fuel}" id="fuelType">
+                <option th:each="fuel : ${fuels}" th:value="${fuel}" th:text="${fuel}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="rentalType">Rental Type:</label>
+            <select class="form-control" th:field="*{rentalType}" id="rentalType">
+                <option th:each="rentalType : ${rentalTypes}" th:value="${rentalType}" th:text="${rentalType}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="status">Car Status:</label>
+            <select class="form-control" th:field="*{status}" id="status">
+                <option th:each="status : ${statuses}" th:value="${status}" th:text="${status}"></option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <hr>
+    <a th:href="@{/cars/list}">Back to Car Directory</a>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Renter Directory</title>
+</head>
+
+<body>
+
+
+<div th:class="container" style="padding-top: 50px">
+
+    <a th:href="@{/}">Back to homepage</a>
+    <hr>
+    <p class="h4 mb-4">Renter Directory</p>
+    <hr>
+
+    <!-- Add button -->
+    <a th:href="@{/renters/showForm}" class="btn btn-primary btn-sm mb-3">Add Renter</a>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th role="columnheader">First Name</th>
+            <th role="columnheader">Last Name</th>
+            <th role="columnheader">Driver License</th>
+            <th role="columnheader">Driver since</th>
+            <th role="columnheader">Email</th>
+            <th role="columnheader">Telephones</th>
+            <th role="columnheader">Address</th>
+            <th>Action</th>
+            <th>Contracts</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="renter : ${renters}">
+            <td th:text="${renter.firstName}"></td>
+            <td th:text="${renter.lastName}"></td>
+            <td th:text="${renter.driverLicenseNumber}"></td>
+            <td th:text="${renter.sinceDate}"></td>
+            <td th:text="${renter.email}"></td>
+
+            <!-- Add view telephones button -->
+            <td>
+                <a th:href="@{/renters/telephones/{id}(id = ${renter.renterId})}" class="btn btn-outline-primary btn-sm">Telephones</a>
+            </td>
+
+            <td th:text="${renter.street} + ' ' + ${renter.building} + ' ' +
+                         ${renter.zip} + ' ' + ${renter.city} + ' ' + ${renter.country}"></td>
+            <td>
+                <!-- Add update function -->
+                <a th:href="@{/renters/update/{id}(id=${renter.renterId})}" class="btn btn-info btn-sm">Update</a>
+                <!-- Add "delete" button/link -->
+                <a th:href="@{/renters/delete/{id}(id=${renter.renterId})}" class="btn btn-danger btn-sm"
+                   onclick="if (!(confirm('Are you sure you want to delete this renter?'))) return false">Delete</a>
+            </td>
+            <td>
+                <!-- add "See Contracts" button -->
+                <a th:href="@{/renters/contracts/{renterId}(renterId=${renter.renterId})}" class="btn btn-outline-primary btn-sm">Contracts</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

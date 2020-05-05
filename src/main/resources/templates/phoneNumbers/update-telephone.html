@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Update Renter</title>
+
+</head>
+
+<body>
+<div th:class="container">
+    <p class="h4 mb-4">Update</p>
+
+    <form action="#" th:action="@{/renters/telephones/update/{renterId}/{phoneId}(renterId=${renterId}, phoneId=${phoneNumber.phoneId})}" method="post">
+
+        <input type="hidden" th:field="*{phoneNumber.phoneId}" />
+
+        <div class="form-group">
+            <label for="phoneNumber">Enter new phone:</label>
+            <input type="text" class="form-control" placeholder="Enter new phone" id="phoneNumber" th:field="*{phoneNumber.phone}">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <hr>
+    <a th:href="@{/renters/list}">Back to Renter Directory</a>
+
+</div>
+</body>
+</html>

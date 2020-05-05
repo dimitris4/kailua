@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Create Contract</title>
+</head>
+
+<body>
+    <!-- Search form -->
+    <div layout:fragment="content" class="container" style="padding-top: 50px;">
+       <form action="#" th:action="@{/contracts/create/{startDate}/{endDate}/selectCar/{carId}/existing-renter(startDate=${startDate}, endDate=${endDate}, carId=${carId})}" method="get" class="form-inline">
+            <div class="form-group mb-2">
+                <label>
+                    <input type="text" class="form-control" name="driverLicenseNumber" placeholder="Search Renter" />
+                </label>
+                <input type="submit" value="Search" class="btn btn-primary" />
+            </div>
+       </form>
+        <div class="card">
+           <div class="card card-body">
+               <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th role="columnheader">First Name</th>
+                            <th role="columnheader">Last Name</th>
+                            <th role="columnheader">Driver License</th>
+                            <th role="columnheader">Driver since</th>
+                            <th role="columnheader">Email</th>
+                            <th>Select</th>
+                        </tr>
+                    </thead>
+                   <tbody>
+                        <tr th:each="renter:${renters}">
+                            <td th:text="${renter.firstName}"></td>
+                            <td th:text="${renter.lastName}"></td>
+                            <td th:text="${renter.driverLicenseNumber}"></td>
+                            <td th:text="${renter.sinceDate}"></td>
+                            <td th:text="${renter.email}"></td>
+                            <!-- Add select button -->
+                            <td>
+                                <a th:href="@{/contracts/create/{startDate}/{endDate}/selectCar/{carId}/existing-renter/{renterId}(startDate = ${startDate},
+                                                endDate = ${endDate}, carId=${carId}, renterId=${renter.renterId})}" class="btn btn-info btn-sm">Select</a>
+                            </td>
+                        </tr>
+                   </tbody>
+               </table>
+           </div>
+       </div>
+    </div>
+</body>
+</html>

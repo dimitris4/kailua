@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Available Cars</title>
+</head>
+
+<body>
+
+<div th:class="container" style="padding-top: 50px">
+    <p class="h4 mb-4">Available cars between <span th:text="${startDate} + ' and ' + ${endDate}"></span>:</p>
+    <hr>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th role="columnheader">Category</th>
+            <th role="columnheader">License Plate</th>
+            <th role="columnheader">First Registration</th>
+            <th role="columnheader">Odometer</th>
+            <th role="columnheader">Brand</th>
+            <th role="columnheader">Model</th>
+            <th role="columnheader">Fuel Type</th>
+            <th role="columnheader">Status</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="car : ${availableCars}">
+            <td th:text="${car.rentalType}"></td>
+            <td th:text="${car.registrationNumber}"></td>
+            <td th:text="${car.firstRegistration}"></td>
+            <td th:text="${car.odometer}"></td>
+            <td th:text="${car.brand}"></td>
+            <td th:text="${car.model}"></td>
+            <td th:text="${car.fuel}"></td>
+            <td th:text="${car.status}"></td>
+            <td>
+                <!-- Add select button -->
+                <a th:href="@{/contracts/create/{startDate}/{endDate}/selectCar/{carId}(startDate = ${contract.getStartDate()},
+                endDate = ${contract.getEndDate()}, carId=${car.carId})}" class="btn btn-info btn-sm">Select</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <hr>
+    <a th:href="@{/contracts/list}">Back to Contracts List</a>
+</div>
+</body>
+</html>

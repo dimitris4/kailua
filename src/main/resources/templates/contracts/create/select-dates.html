@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Create Contract</title>
+</head>
+
+<body>
+<div th:class="container" style="padding-top: 50px; width: 300px;">
+    <p class="h4 mb-4">Select Dates</p>
+    <hr>
+
+    <form action="#" th:action="@{/contracts/create/selectDates}" method="post">
+        <div class="form-group">
+            <label for="fromDate">*From:</label>
+            <input type="date" class="form-control" placeholder="Enter date" id="fromDate" th:field="*{contract.startDate}">
+            <td class="error-list" th:if="${#fields.hasErrors('contract.startDate')}" th:errors="*{contract.startDate}">Mandatory Field!</td>
+        </div>
+        <div class="form-group">
+            <label for="toDate">*To:</label>
+            <input type="date" class="form-control" placeholder="Enter date" id="toDate" th:field="*{contract.endDate}">
+            <td class="error-list" th:if="${#fields.hasErrors('contract.endDate')}" th:errors="*{contract.endDate}">Mandatory Field!</td>
+        </div>
+        <button type="submit" class="btn btn-primary">Find Car</button>
+    </form>
+
+    <hr>
+    <a th:href="@{/contracts/list}">Back to Contracts List</a>
+
+</div>
+</body>
+</html>

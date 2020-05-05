@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Deletion denied</title>
+</head>
+
+<body>
+
+
+<div th:class="container" style="padding-top: 50px">
+
+    <a th:href="@{/cars/list}">Back to car directory</a>
+    <hr>
+    <p class="h4 mb-4">Deletion denied because the car is associated with active contracts.</p>
+    <hr>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Create Contract</title>
+</head>
+
+<body>
+<div th:class="container" style="padding-top: 50px;">
+    <p class="h4 mb-4">Create contract</p>
+    <hr>
+    <a th:href="@{/contracts/create/{startDate}/{endDate}/selectCar/{carId}/new-renter(startDate=${startDate}, endDate=${endDate}, carId=${carId})}" class="btn btn-primary btn-lg btn-block">New Renter</a>
+    <a th:href="@{/contracts/create/{startDate}/{endDate}/selectCar/{carId}/existing-renter(startDate=${startDate}, endDate=${endDate}, carId=${carId})}" class="btn btn-secondary btn-lg btn-block">Existing Renter</a>
+    <hr>
+    <a th:href="@{/contracts/list}">Back to Contracts List</a>
+</div>
+</body>
+</html>

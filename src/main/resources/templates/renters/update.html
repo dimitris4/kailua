@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Update Renter</title>
+
+</head>
+
+<body>
+<div th:class="container">
+    <p class="h4 mb-4">Update</p>
+
+    <form action="#"
+          th:action="@{/renters/update/{id}(id=${renter.renterId})}"
+          th:object="${renter}"
+          method="post">
+
+        <!-- Add hidden form field to handle the update -->
+        <input type="hidden" th:field="*{renterId}" />
+
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input type="text" class="form-control" placeholder="Enter first name" id="firstName" th:field="*{firstName}">
+            <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="alert alert-danger"></p>
+        </div>
+
+        <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input type="text" class="form-control" placeholder="Enter last name" id="lastName" th:field="*{lastName}">
+            <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="alert alert-danger"></p>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" placeholder="Enter email" id="email" th:field="*{email}">
+            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="alert alert-danger"></p>
+        </div>
+
+        <div class="form-group">
+            <label for="driverLicenseNumber">Driver License Number:</label>
+            <input type="text" class="form-control" placeholder="Enter driver license number"
+                   id="driverLicenseNumber" th:field="*{driverLicenseNumber}">
+            <p th:if="${#fields.hasErrors('driverLicenseNumber')}" th:errors="*{driverLicenseNumber}" class="alert alert-danger"></p>
+        </div>
+
+        <div class="form-group">
+            <label for="sinceDate">Driver since (date):</label>
+            <input type="date" class="form-control" placeholder="Enter date" id="sinceDate" th:field="*{sinceDate}">
+        </div>
+
+        <div class="form-group">
+            <p>Address</p>
+        </div>
+
+        <div class="form-group">
+            <label for="street">Street:</label>
+            <input type="text" class="form-control" placeholder="Enter street" id="street" th:field="*{street}">
+        </div>
+
+        <div class="form-group">
+            <label for="building">Number:</label>
+            <input type="number" class="form-control" placeholder="Enter number" id="building" th:field="*{building}">
+        </div>
+
+        <div class="form-group">
+            <label for="zip">Zip code:</label>
+            <input type="text" class="form-control" placeholder="Enter zip code" id="zip" th:field="*{zip}">
+        </div>
+
+        <div class="form-group">
+            <label for="city">City:</label>
+            <input type="text" class="form-control" placeholder="Enter city" id="city" th:field="*{city}">
+        </div>
+
+        <div class="form-group">
+            <label for="country">Country:</label>
+            <select class="form-control" th:field="*{country}" id="country">
+                <option value="0">Select country</option>
+                <option th:each="country : ${countryList}" th:value="${country}" th:text="${country}"></option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <hr>
+    <a th:href="@{/renters/list}">Back to Renter Directory</a>
+
+</div>
+</body>
+</html>

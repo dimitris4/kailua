@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Renter Form</title>
+
+</head>
+
+<body>
+<div th:class="container" style="padding-top: 50px; width: 500px; ">
+    <p class="h4 mb-4">Collect information about your renters.</p>
+
+    <form th:action="@{/contracts/create/{startDate}/{endDate}/selectCar/{carId}/new-renter(startDate=${startDate}, endDate=${endDate}, carId=${carId})}"  method="post">
+
+        <!-- Add hidden form field to handle the update -->
+        <input type="hidden" th:field="*{renter.renterId}" />
+
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input type="text" class="form-control" placeholder="Enter first name" id="firstName" th:field="*{renter.firstName}">
+            <td class="error-list" th:if="${#fields.hasErrors('renter.firstName')}" th:errors="*{renter.firstName}">Mandatory Field!</td>
+        </div>
+
+        <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input type="text" class="form-control" placeholder="Enter last name" id="lastName" th:field="*{renter.lastName}">
+            <td class="error-list" th:if="${#fields.hasErrors('renter.lastName')}" th:errors="*{renter.lastName}"></td>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" placeholder="Enter email" id="email" th:field="*{renter.email}">
+            <td class="error-list" th:if="${#fields.hasErrors('renter.email')}" th:errors="*{renter.email}"></td>
+        </div>
+
+        <div class="form-group">
+            <label for="driverLicenseNumber">Driver License Number:</label>
+            <input type="text" class="form-control" placeholder="Enter driver license number"
+                   id="driverLicenseNumber" th:field="*{renter.driverLicenseNumber}">
+            <td class="error-list" th:if="${#fields.hasErrors('renter.driverLicenseNumber')}" th:errors="*{renter.driverLicenseNumber}">Mandatory Field!</td>
+        </div>
+
+        <div class="form-group">
+            <label for="sinceDate">Driver since (date):</label>
+            <input type="date" class="form-control" placeholder="Enter date" id="sinceDate" th:field="*{renter.sinceDate}">
+            <td class="error-list" th:if="${#fields.hasErrors('renter.sinceDate')}" th:errors="*{renter.sinceDate}">Mandatory Field!</td>
+        </div>
+
+        <div class="form-group">
+            <label for="telephone1">Telephone:</label>
+            <input type="text" class="form-control" placeholder="Enter telephone number: "
+                   id="telephone1" th:field="*{renter.telephone}">
+        </div>
+
+        <div class="form-group">
+            <p>Address</p>
+        </div>
+
+        <div class="form-group">
+            <label for="street">Street:</label>
+            <input type="text" class="form-control" placeholder="Enter street" id="street" th:field="*{renter.street}">
+            <td class="error-list" th:if="${#fields.hasErrors('renter.street')}" th:errors="*{renter.street}"></td>
+        </div>
+
+        <div class="form-group">
+            <label for="building">Number:</label>
+            <input type="number" class="form-control" placeholder="Enter number" id="building" th:field="*{renter.building}">
+        </div>
+
+        <div class="form-group">
+            <label for="zip">Zip code:</label>
+            <input type="text" class="form-control" placeholder="Enter zip code" id="zip" th:field="*{renter.zip}">
+            <td class="error-list" th:if="${#fields.hasErrors('renter.zip')}" th:errors="*{renter.zip}"></td>
+        </div>
+
+        <div class="form-group">
+            <label for="city">City:</label>
+            <input type="text" class="form-control" placeholder="Enter city" id="city" th:field="*{renter.city}">
+            <td class="error-list" th:if="${#fields.hasErrors('renter.city')}" th:errors="*{renter.city}"></td>
+        </div>
+
+        <div class="form-group">
+            <label for="country">Country:</label>
+            <select class="form-control" th:field="*{renter.country}" id="country">
+                <option value="0">Select country</option>
+                <option th:each="country : ${countryList}" th:value="${country}" th:text="${country}"></option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <hr>
+    <a th:href="@{/contracts/list}">Back to Contracts List</a>
+</div>
+</body>
+</html>

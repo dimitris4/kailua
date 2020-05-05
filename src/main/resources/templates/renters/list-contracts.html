@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Renter Contracts</title>
+</head>
+
+<body>
+
+
+<div th:class="container" style="padding-top: 50px;">
+
+    <p class="h4 mb-4">Contracts for <span th:text="${renter.firstName} + ' ' + ${renter.lastName}"></span>:</p>
+    <hr>
+
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th role="columnheader">Start Date</th>
+            <th role="columnheader">End Date</th>
+            <th role="columnheader">Max km</th>
+            <th role="columnheader">Actual km</th>
+            <th role="columnheader">Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="contract : ${contracts}">
+            <td th:text="${contract.startDate}"></td>
+            <td th:text="${contract.endDate}"></td>
+            <td th:text="${contract.maxKm}"></td>
+            <td th:text="${contract.actualKm}"></td>
+            <td>
+                <!-- Add update function -->
+                <a th:href="@{/renters/{renterId}/contracts/update/{contractId}(renterId=${renter.renterId}, contractId=${contract.contractId})}" class="btn btn-info btn-sm">Update</a>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+
+    <hr>
+    <a th:href="@{/renters/list}">Back to Renter List</a>
+
+</div>
+</body>
+</html>
